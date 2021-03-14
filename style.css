@@ -45,6 +45,11 @@ body {
     position: absolute;
     top: 15%;
     left: 15%;
+    opacity: 0;
+}
+
+.line-1 {
+    justify-content: center;
 }
 
 .pa-wrapper {
@@ -54,7 +59,6 @@ body {
 }
 
 .hook-animation {
-    opacity: 0;
     animation: hook 2s ease;
 }
 
@@ -81,7 +85,7 @@ body {
     position: relative;
 }
 
-.faceless__ulti {
+.faceless__ulti, .blackhole__ulti {
     position: absolute;
     top: -50px;
     left: 50%;
@@ -89,6 +93,19 @@ body {
     width: 50px;
     height: 50px;
     cursor: pointer;
+}
+
+
+.team {
+    transition: .7s ease;
+}
+
+.blackholed {
+    border-radius: 50%;
+    opacity: 0;
+    position: absolute;
+    top: -25px;
+    transition: .7s ease;
 }
 
 .control-panel {
@@ -115,11 +132,11 @@ button {
     }
 
     50% {
-        transform: rotateY(180deg) translate(-1700px, -700px) scale(-1, 1);
+        transform: rotateY(180deg) translate(-1700px, -1020px) scale(-1, 1);
     }
 
     75% {
-        transform: rotateY(180deg) translate(0, -700px) scale(-1, 1);
+        transform: rotateY(180deg) translate(0, -1020px) scale(-1, 1);
     }
 
     100% {

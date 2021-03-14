@@ -31,12 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let line2 = true;
     function tideMoving() {
-        console.log(line2)
         if (line2) {
             anime({
                 targets: '.tidehunter-wrapper',
-                translateX: function() {
-                  return anime.random(0, 500);
+                left: function() {
+                  return anime.random(0, 40) + '%';
                 },
                 easing: 'easeInOutQuad',
                 duration: 750,
@@ -45,12 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
     function facelessMoving() {
-        console.log(line2)
         if (line2) {
             anime({
                 targets: '.faceless-wrapper',
-                translateX: function() {
-                    return anime.random(-500, 0)
+                left: function() {
+                    return anime.random(-40, 0) + '%';
                 },
                 scale: "-1, 1",
                 easing: 'easeInOutQuad',
@@ -58,30 +56,52 @@ document.addEventListener('DOMContentLoaded', function() {
                 complete: facelessMoving
             });
         }
-      }
+    }
+
+    let blackholeValue = 0;
+
+    function blackhole() {
+        anime({
+            targets: ['.team', '.blackholed'],
+            rotate: function() {
+                blackholeValue += 15;
+                return blackholeValue;
+            },
+            lopp: true,
+            complete: blackhole
+        });
+    }
+
+    document.querySelector('.blackhole__ulti').onclick = () => {
+        document.querySelector('.blackholed').style.opacity = 0.5;
+        document.querySelector('.blackhole__ulti').opacity = 0.5;
+        document.querySelector('.blackhole__ulti').onclick = '';
+        blackhole();
+    }
+
 
     
-      facelessMoving();
-      tideMoving();
+    facelessMoving();
+    tideMoving();
 
-      chronosphere.onclick = function() {
-          line2 = false;
-          
-          document.getElementById('line-2').style.background = 'rgb(164,126,224)';
+    chronosphere.onclick = function() {
+        line2 = false;
+        
+        document.getElementById('line-2').style.background = 'rgb(164,126,224)';
 
-          document.querySelector('.faceless__ulti').style.opacity = 0.6;
-          document.querySelector('.tidehunter-wrapper').style.opacity = 0.3;
+        document.querySelector('.faceless__ulti').style.opacity = 0.6;
+        document.querySelector('.tidehunter-wrapper').style.opacity = 0.3;
 
-          setTimeout(() => {
-            document.getElementById('line-2').style.background = 'rgb(230, 240, 141)';
-            line2 = true;
-            facelessMoving();
-            tideMoving();
-            document.querySelector('.tidehunter-wrapper').style.opacity = 1;
-            document.querySelector('.faceless__ulti').style.opacity = 1;
+        setTimeout(() => {
+        document.getElementById('line-2').style.background = 'rgb(230, 240, 141)';
+        line2 = true;
+        facelessMoving();
+        tideMoving();
+        document.querySelector('.tidehunter-wrapper').style.opacity = 1;
+        document.querySelector('.faceless__ulti').style.opacity = 1;
 
-          }, 5000)
-      }
+        }, 5000)
+    }
 });
 
 
